@@ -22,6 +22,42 @@
     <None Include="res\FutureBuilding.ico">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="res\bloch.jpg">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\bloch.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\NewFederalBuilding.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\ica.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\OlympicSculpturePark.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\MuseumOfContemporaryArt.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\background.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\CCTVTower.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\ChinaNationalStadium.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\LinkedHybrid.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\CajaMadridTower.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\Heathrow_T5.bmp">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FutureBuilding.h">
@@ -39,6 +75,9 @@
     <ClInclude Include="Resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ImageBox.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FutureBuilding.cpp">
@@ -48,6 +87,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageBox.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

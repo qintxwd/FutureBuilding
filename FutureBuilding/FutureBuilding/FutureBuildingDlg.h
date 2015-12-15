@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include "imagebox.h"
 
 
 // CFutureBuildingDlg ¶Ô»°¿ò
@@ -30,4 +31,25 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnStnClickedStaticBuildname11();
+	afx_msg void OnStnClickedStaticBtn1();
+	afx_msg void OnStnClickedStaticBtn2();
+	afx_msg void OnStnClickedStaticBuildname12();
+	afx_msg void OnStnClickedStaticBtn3();
+	afx_msg void OnStnClickedStaticBuildname13();
+	afx_msg void OnStnClickedStaticBtn4();
+	afx_msg void OnStnClickedStaticBuildname14();
+	afx_msg void OnStnClickedStaticBtn5();
+	afx_msg void OnStnClickedStaticBuildname15();
+	afx_msg void OnStnClickedStaticBtn6();
+	afx_msg void OnStnClickedStaticBuildname16();
+	afx_msg void OnStnClickedStaticBtn7();
+	afx_msg void OnStnClickedStaticBuildname17();
+	afx_msg void OnStnClickedStaticBtn8();
+	afx_msg void OnStnClickedStaticBuildname18();
+	afx_msg void OnStnClickedStaticBtn9();
+	afx_msg void OnStnClickedStaticBuildname19();
+	afx_msg void OnStnClickedStaticBtn10();
+	afx_msg void OnStnClickedStaticBuildname20();
+private:
+	//CImageBox m_PictureBox;
 };
