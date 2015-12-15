@@ -6,6 +6,7 @@
 #include "imagebox.h"
 
 #include <vector>
+#include "MyButton.h"
 using namespace std;
 
 // CFutureBuildingDlg ¶Ô»°¿ò
@@ -60,9 +61,13 @@ private:
 	vector<int> chooseDisplayId;
 	vector<int> introductionDisplayId;
 	vector<int> *currentDisplayId;
-
+	HBITMAP m_hBitmap;
 	void display();
+	void SetButtonBackGrounds(CDC *pDC);
 public:
 	afx_msg void OnClose();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnBnClickedButton1();
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	CMyButton m_btnBack;
 };

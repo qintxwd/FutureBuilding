@@ -61,6 +61,9 @@
     <None Include="res\back.jpg">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="res\back.png">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FutureBuilding.h">
@@ -81,6 +84,15 @@
     <ClInclude Include="ImageBox.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CGdiPlusBitmap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MyButton.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMemDC.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FutureBuilding.cpp">
@@ -93,6 +105,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ImageBox.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MyButton.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

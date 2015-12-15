@@ -49,6 +49,11 @@ BOOL CFutureBuildingApp::InitInstance()
 	InitCtrls.dwICC = ICC_WIN95_CLASSES;
 	InitCommonControlsEx(&InitCtrls);
 
+
+	GdiplusStartupInput gdiplusStartupInput;
+	GdiplusStartup(&gdiplusToken,&gdiplusStartupInput,NULL);
+
+
 	CWinApp::InitInstance();
 
 
@@ -92,3 +97,10 @@ BOOL CFutureBuildingApp::InitInstance()
 	return FALSE;
 }
 
+
+
+int CFutureBuildingApp::ExitInstance()
+{
+	GdiplusShutdown(gdiplusToken);
+	return CWinApp::ExitInstance();
+}

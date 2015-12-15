@@ -25,8 +25,11 @@ public:
 	virtual BOOL InitInstance();
 
 // й╣ож
+	ULONG_PTR gdiplusToken;
+
 
 	DECLARE_MESSAGE_MAP()
+	virtual int ExitInstance();
 };
 
 extern CFutureBuildingApp theApp;

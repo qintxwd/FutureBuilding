@@ -6,7 +6,7 @@
 #include "FutureBuilding.h"
 #include "FutureBuildingDlg.h"
 #include "afxdialogex.h"
-
+#include "MyMemDC.h"
 #include <string>
 
 #ifdef _DEBUG
@@ -47,6 +47,7 @@ CFutureBuildingDlg::CFutureBuildingDlg(CWnd* pParent /*=NULL*/)
 	allDisplayId.push_back(IDC_STATIC_BUILDNAME_20);
 	allDisplayId.push_back(IDC_STATIC_PIC_BOX);
 	allDisplayId.push_back(IDC_STATIC_INTRODUCTION);
+	allDisplayId.push_back(IDC_BUTTON_BACK);
 
 	chooseDisplayId.push_back(IDC_STATIC_BTN_1);
 	chooseDisplayId.push_back(IDC_STATIC_BTN_2);
@@ -71,13 +72,14 @@ CFutureBuildingDlg::CFutureBuildingDlg(CWnd* pParent /*=NULL*/)
 
 	introductionDisplayId.push_back(IDC_STATIC_PIC_BOX);
 	introductionDisplayId.push_back(IDC_STATIC_INTRODUCTION);
-
+	introductionDisplayId.push_back(IDC_BUTTON_BACK);
 }
 
 void CFutureBuildingDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_STATIC_PIC_BOX, m_PictureBox);
+	DDX_Control(pDX, IDC_BUTTON_BACK, m_btnBack);
 }
 
 BEGIN_MESSAGE_MAP(CFutureBuildingDlg, CDialogEx)
@@ -105,6 +107,8 @@ BEGIN_MESSAGE_MAP(CFutureBuildingDlg, CDialogEx)
 	ON_STN_CLICKED(IDC_STATIC_BUILDNAME_20, &CFutureBuildingDlg::OnStnClickedStaticBuildname20)
 	ON_WM_CLOSE()
 	ON_WM_CTLCOLOR()
+	ON_BN_CLICKED(IDC_BUTTON1, &CFutureBuildingDlg::OnBnClickedButton1)
+	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 
@@ -138,6 +142,12 @@ BOOL CFutureBuildingDlg::OnInitDialog()
 
 	//设置字体
 	m_fontIntroduction.CreatePointFont(350,_T("华文行楷"));
+
+	m_btnBack.LoadStdImage(IDB_PNG_BACK, -1, _T("PNG"));
+	HBITMAP		hBitmap			= NULL;
+	HINSTANCE	hInstResource	= NULL;
+	hInstResource = AfxFindResourceHandle(MAKEINTRESOURCE(IDB_BITMAP_BACKGROUND), RT_BITMAP);
+	m_hBitmap = (HBITMAP)::LoadImage(hInstResource, MAKEINTRESOURCE(IDB_BITMAP_BACKGROUND), IMAGE_BITMAP, 0, 0, 0);
 
 	currentDisplayId = &chooseDisplayId;
 
@@ -452,4 +462,32 @@ void CFutureBuildingDlg::display()
 		}
 	}
 
+}
+
+void CFutureBuildingDlg::OnBnClickedButton1()
+{
+	//MessageBox(_T("OK"));
+	m_PictureBox.Stop();
+	currentDisplayId = &chooseDisplayId;
+	display();
+}
+
+
+BOOL CFutureBuildingDlg::OnEraseBkgnd(CDC* pDC)
+{
+	CRect rect;
+	GetClientRect(rect);
+	CMyMemDC pDevC(pDC, rect);
+	if (m_hBitmap)
+	{
+		pDevC->SelectObject(m_hBitmap);
+	}
+	SetButtonBackGrounds(pDevC);
+
+
+	return CDialogEx::OnEraseBkgnd(pDC);
+}
+
+void CFutureBuildingDlg::SetButtonBackGrounds(CDC *pDC){
+	m_btnBack.SetBkGnd(pDC);
 }
