@@ -5,6 +5,8 @@
 #pragma once
 #include "imagebox.h"
 
+#include <vector>
+using namespace std;
 
 // CFutureBuildingDlg ¶Ô»°¿ò
 class CFutureBuildingDlg : public CDialogEx
@@ -51,5 +53,16 @@ public:
 	afx_msg void OnStnClickedStaticBtn10();
 	afx_msg void OnStnClickedStaticBuildname20();
 private:
-	//CImageBox m_PictureBox;
+	CImageBox m_PictureBox;
+	CFont m_fontIntroduction;
+
+	vector<int> allDisplayId;
+	vector<int> chooseDisplayId;
+	vector<int> introductionDisplayId;
+	vector<int> *currentDisplayId;
+
+	void display();
+public:
+	afx_msg void OnClose();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 };

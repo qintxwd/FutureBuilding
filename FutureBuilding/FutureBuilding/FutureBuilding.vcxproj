@@ -95,6 +95,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
+    <None Include="res\back.jpg" />
     <None Include="res\background.bmp" />
     <None Include="res\bloch.bmp" />
     <None Include="res\bloch.jpg" />
