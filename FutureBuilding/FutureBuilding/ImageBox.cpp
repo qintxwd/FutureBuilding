@@ -509,6 +509,55 @@ void CImageBox::Render()
 			m_bIsDelayed = FALSE;
 		return;
 	}
+	bool isRandom = false;
+	if(kAnimationRandom == m_iCurAnimType){
+		isRandom = true;
+		//0 - 12 随机一个数字
+		srand((int)time(0));
+		int randxxx = rand()%13;
+		
+		switch(randxxx){
+		case 0:
+			m_iCurAnimType = kAnimationFade;
+			break;
+		case 1:
+			m_iCurAnimType = kAnimationSlideLeft;
+			break;
+		case 2:
+			m_iCurAnimType = kAnimationSlideRight;
+			break;
+		case 3:
+			m_iCurAnimType = kAnimationSlideTop;
+			break;
+		case 4:
+			m_iCurAnimType = kAnimationSlideBottom;
+			break;
+		case 5:
+			m_iCurAnimType = kAnimationBlindLeft;
+			break;
+		case 6:
+			m_iCurAnimType = kAnimationBlindRight;
+			break;
+		case 7:
+			m_iCurAnimType = kAnimationBlindTop;
+			break;
+		case 8:
+			m_iCurAnimType = kAnimationBlindBottom;
+			break;
+		case 9:
+			m_iCurAnimType = kAnimationCoverLeft;
+			break;
+		case 10:
+			m_iCurAnimType = kAnimationCoverRight;
+			break;
+		case 11:
+			m_iCurAnimType = kAnimationCoverTop;
+			break;
+		case 12:
+			m_iCurAnimType = kAnimationCoverBottom;
+			break;
+		}
+	}
 
 	switch(m_iCurAnimType)
 	{
@@ -534,6 +583,8 @@ void CImageBox::Render()
 		AnimationRender_Cover(timeGetTime());
 		break;
 	}
+	if(isRandom)
+		m_iCurAnimType = kAnimationRandom;
 }
 
 void CImageBox::OnPaint()

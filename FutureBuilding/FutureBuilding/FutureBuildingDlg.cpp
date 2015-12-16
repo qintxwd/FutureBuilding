@@ -16,9 +16,6 @@
 
 // CFutureBuildingDlg 对话框
 
-
-
-
 CFutureBuildingDlg::CFutureBuildingDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CFutureBuildingDlg::IDD, pParent)
 {
@@ -107,8 +104,19 @@ BEGIN_MESSAGE_MAP(CFutureBuildingDlg, CDialogEx)
 	ON_STN_CLICKED(IDC_STATIC_BUILDNAME_20, &CFutureBuildingDlg::OnStnClickedStaticBuildname20)
 	ON_WM_CLOSE()
 	ON_WM_CTLCOLOR()
-	ON_BN_CLICKED(IDC_BUTTON1, &CFutureBuildingDlg::OnBnClickedButton1)
+//	ON_BN_CLICKED(IDC_BUTTON1, &CFutureBuildingDlg::OnBnClickedButton1)
 	ON_WM_ERASEBKGND()
+	ON_MESSAGE(WM_INTRODUCE_BLOCH, &CFutureBuildingDlg::OnIntroduceBloch)
+	ON_MESSAGE(WM_INTRODUCE_CCTV, &CFutureBuildingDlg::OnIntroduceCctv)
+	ON_MESSAGE(WM_INTRODUCE_CAJA, &CFutureBuildingDlg::OnIntroduceCaja)
+	ON_MESSAGE(WM_INTRODUCE_CNS, &CFutureBuildingDlg::OnIntroduceCns)
+	ON_MESSAGE(WM_INTRODUCE_HT5, &CFutureBuildingDlg::OnIntroduceHt5)
+	ON_MESSAGE(WM_INTRODUCE_ICA, &CFutureBuildingDlg::OnIntroduceIca)
+	ON_MESSAGE(WM_INTRODUCE_LH, &CFutureBuildingDlg::OnIntroduceLh)
+	ON_MESSAGE(WM_INTRODUCE_MOCA, &CFutureBuildingDlg::OnIntroduceMoca)
+	ON_MESSAGE(WM_INTRODUCE_NFB, &CFutureBuildingDlg::OnIntroduceNfb)
+	ON_MESSAGE(WM_INTRODUCE_OSP, &CFutureBuildingDlg::OnIntroduceOsp)
+	ON_BN_CLICKED(IDC_BUTTON_BACK, &CFutureBuildingDlg::OnBnClickedButtonBack)
 END_MESSAGE_MAP()
 
 
@@ -126,20 +134,11 @@ BOOL CFutureBuildingDlg::OnInitDialog()
 	// Initialize CImageBox
 	m_PictureBox.Create();
 	// 动画类型
-	m_PictureBox.SetAnimationType(CImageBox::kAnimationCoverLeft);
+	m_PictureBox.SetAnimationType(CImageBox::kAnimationRandom);
 	// 动画过渡时间(ms)
 	m_PictureBox.SetDuration(400);
 	// 每张图片停留时间
-	m_PictureBox.SetRetention(2000);
-	m_PictureBox.AddImage(TEXT("images\\1.jpg"));
-	m_PictureBox.AddImage(TEXT("images\\2.jpg"));
-	m_PictureBox.AddImage(TEXT("images\\3.jpg"));
-	m_PictureBox.AddImage(TEXT("images\\4.jpg"));
-	m_PictureBox.AddImage(TEXT("images\\5.jpg"));
-	m_PictureBox.AddImage(TEXT("images\\6.jpg"));
-	m_PictureBox.AddImage(TEXT("images\\7.jpg"));
-	m_PictureBox.AddImage(TEXT("images\\8.jpg"));
-
+	m_PictureBox.SetRetention(5000);
 	//设置字体
 	m_fontIntroduction.CreatePointFont(350,_T("华文行楷"));
 
@@ -211,204 +210,122 @@ HCURSOR CFutureBuildingDlg::OnQueryDragIcon()
 
 void CFutureBuildingDlg::OnStnClickedStaticBuildname11()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:史蒂文·霍尔\n    布洛克新翼大楼耗资9,500万美元（约7.4亿港元）兴建，2007年6月9日揭幕，收藏当代和非洲艺术品、摄影作品以及特别馆藏。新翼还包括了一座咖啡厅和参考图书馆。纳阿氏艺术馆建筑风格为新式古典派。这次获选为《时代》周刊2007年度十大最佳建筑首位的，是馆内新建的布洛克大楼。馆方于1993年开始构思扩建，目标是要增加艺术馆面积55%。扩建计划于1999年落实，建筑师霍尔把新翼设计成楼底高度不一，并且令大楼发光，《时代》周刊形容布洛克新翼是古典派建筑的宏伟新猷。美国密苏里州堪萨斯城纳尔逊艺术馆扩建配楼。大楼由几个不规则的白色立方体组成。每到夜间，灯光从外墙上半透明和透明的玻璃中透出，好似建筑由内至外发出柔和的白色光芒，使这座新古典主义艺术博物馆更具现代气息。被美国《时代》杂志评为2007年世界十大建筑之首。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_BLOCH);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBtn1()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	//std::string designer = "史蒂文·霍尔";
-	//std::string ssss = "布洛克新翼大楼耗资9,500万美元（约7.4亿港元）兴建，2007年6月9日揭幕，收藏当代和非洲艺术品、摄影作品以及特别馆藏。新翼还包括了一座咖啡厅和参考图书馆。纳阿氏艺术馆建筑风格为新式古典派。这次获选为《时代》周刊2007年度十大最佳建筑首位的，是馆内新建的布洛克大楼。馆方于1993年开始构思扩建，目标是要增加艺术馆面积55%。扩建计划于1999年落实，建筑师霍尔把新翼设计成楼底高度不一，并且令大楼发光，《时代》周刊形容布洛克新翼是古典派建筑的宏伟新猷。美国密苏里州堪萨斯城纳尔逊艺术馆扩建配楼。大楼由几个不规则的白色立方体组成。每到夜间，灯光从外墙上半透明和透明的玻璃中透出，好似建筑由内至外发出柔和的白色光芒，使这座新古典主义艺术博物馆更具现代气息。被美国《时代》杂志评为2007年世界十大建筑之首。";
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:史蒂文·霍尔\n    布洛克新翼大楼耗资9,500万美元（约7.4亿港元）兴建，2007年6月9日揭幕，收藏当代和非洲艺术品、摄影作品以及特别馆藏。新翼还包括了一座咖啡厅和参考图书馆。纳阿氏艺术馆建筑风格为新式古典派。这次获选为《时代》周刊2007年度十大最佳建筑首位的，是馆内新建的布洛克大楼。馆方于1993年开始构思扩建，目标是要增加艺术馆面积55%。扩建计划于1999年落实，建筑师霍尔把新翼设计成楼底高度不一，并且令大楼发光，《时代》周刊形容布洛克新翼是古典派建筑的宏伟新猷。美国密苏里州堪萨斯城纳尔逊艺术馆扩建配楼。大楼由几个不规则的白色立方体组成。每到夜间，灯光从外墙上半透明和透明的玻璃中透出，好似建筑由内至外发出柔和的白色光芒，使这座新古典主义艺术博物馆更具现代气息。被美国《时代》杂志评为2007年世界十大建筑之首。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_BLOCH);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBtn2()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	//std::string designer = "莫菲西斯 汤姆·梅恩";
-	//std::string ssss = "旧金山新联邦大楼位于美国加利福利亚州旧金山市区，该建筑有18层办公楼，高71米。大堂楼层开始往上设有「百叶帘」般的外墙设计，配以网眼钢板，《时代》周刊形容大楼设计技术精湛。这座大楼不仅在外形上给人极强的视觉冲击，还是座完完全全的环保建筑，其耗能是同类型大楼耗能的一半。大楼朝南一面装有穿孔金属板，它们既是整栋大楼外观设计的一部分，也是实用的遮阳屏，能够在挡住直射阳光的同时，为大楼内的办公室提供温和的采光，即使离窗户最远的座位也能享受到自然光。";
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:莫菲西斯 汤姆·梅恩\n    旧金山新联邦大楼位于美国加利福利亚州旧金山市区，该建筑有18层办公楼，高71米。大堂楼层开始往上设有「百叶帘」般的外墙设计，配以网眼钢板，《时代》周刊形容大楼设计技术精湛。这座大楼不仅在外形上给人极强的视觉冲击，还是座完完全全的环保建筑，其耗能是同类型大楼耗能的一半。大楼朝南一面装有穿孔金属板，它们既是整栋大楼外观设计的一部分，也是实用的遮阳屏，能够在挡住直射阳光的同时，为大楼内的办公室提供温和的采光，即使离窗户最远的座位也能享受到自然光。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_NFB);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBuildname12()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:莫菲西斯 汤姆·梅恩\n    旧金山新联邦大楼位于美国加利福利亚州旧金山市区，该建筑有18层办公楼，高71米。大堂楼层开始往上设有「百叶帘」般的外墙设计，配以网眼钢板，《时代》周刊形容大楼设计技术精湛。这座大楼不仅在外形上给人极强的视觉冲击，还是座完完全全的环保建筑，其耗能是同类型大楼耗能的一半。大楼朝南一面装有穿孔金属板，它们既是整栋大楼外观设计的一部分，也是实用的遮阳屏，能够在挡住直射阳光的同时，为大楼内的办公室提供温和的采光，即使离窗户最远的座位也能享受到自然光。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_NFB);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBtn3()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	//std::string designer = "Weiss/Manfredi";
-	//std::string ssss = "西雅图艺术博物馆将其雕塑公园建于一个旧工业区内，一条繁忙的公路和铁路穿越其间。奥运雕塑公园位于滨海公路和铁路线中间的空地，据悉1970年代以前，公园所在地为石油公司优尼科（加州联合石油）占有。优尼科迁出后，该地皮因地下藏有有毒物质，长年丢空。后来西雅图艺术馆建议把该空置用地改建成公园，以解决西雅图闹市区中缺乏休憩用地的问题。该公园摆放的部分大型雕塑设有行人径，参观者可于雕塑上行走。此外，公园亦会不时展出非常设雕塑，《时代》周刊形容公园将自然和艺术与城市糅合起来，成为西雅图的「动能地带」。这是一个建筑业和设计业双重繁荣的年代，将古典主义现代化、让繁忙的公路从公园中穿行、像堆积木一样的“堆积”成一个大楼，各种各样的建筑层出不穷。";
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:Weiss/Manfredi\n    西雅图艺术博物馆将其雕塑公园建于一个旧工业区内，一条繁忙的公路和铁路穿越其间。奥运雕塑公园位于滨海公路和铁路线中间的空地，据悉1970年代以前，公园所在地为石油公司优尼科（加州联合石油）占有。优尼科迁出后，该地皮因地下藏有有毒物质，长年丢空。后来西雅图艺术馆建议把该空置用地改建成公园，以解决西雅图闹市区中缺乏休憩用地的问题。该公园摆放的部分大型雕塑设有行人径，参观者可于雕塑上行走。此外，公园亦会不时展出非常设雕塑，《时代》周刊形容公园将自然和艺术与城市糅合起来，成为西雅图的「动能地带」。这是一个建筑业和设计业双重繁荣的年代，将古典主义现代化、让繁忙的公路从公园中穿行、像堆积木一样的“堆积”成一个大楼，各种各样的建筑层出不穷。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_OSP);	
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBuildname13()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:Weiss/Manfredi\n    西雅图艺术博物馆将其雕塑公园建于一个旧工业区内，一条繁忙的公路和铁路穿越其间。奥运雕塑公园位于滨海公路和铁路线中间的空地，据悉1970年代以前，公园所在地为石油公司优尼科（加州联合石油）占有。优尼科迁出后，该地皮因地下藏有有毒物质，长年丢空。后来西雅图艺术馆建议把该空置用地改建成公园，以解决西雅图闹市区中缺乏休憩用地的问题。该公园摆放的部分大型雕塑设有行人径，参观者可于雕塑上行走。此外，公园亦会不时展出非常设雕塑，《时代》周刊形容公园将自然和艺术与城市糅合起来，成为西雅图的「动能地带」。这是一个建筑业和设计业双重繁荣的年代，将古典主义现代化、让繁忙的公路从公园中穿行、像堆积木一样的“堆积”成一个大楼，各种各样的建筑层出不穷。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_OSP);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBtn4()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	//std::string designer =  "弗兰克·盖里";
-	//std::string ssss = "美国因特网巨头IAC公司于2006年选址纽约曼哈顿西区，兴建其总部大楼。IAC公司办公大楼是Frank Gehry在曼哈顿的第一个建筑，大楼的外墙为白色，设计师别出心裁，把每一层的外围都设计得与一般大厦不同。一般大厦外墙是平的，但这座大楼的外墙却呈延绵起伏状，故从街外看整座大楼呈波浪型。蛇行般线条让内部设计与外部设计实现完美统一。这座大楼彰显了许多盖里的个人风格，底部有几个扭曲的塔楼像蜂巢一样结合在一起，在此之上，是另一组直径相对较小的塔楼。整座大楼看上去就像是迎风的船帆。";
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:弗兰克·盖里\n    美国因特网巨头IAC公司于2006年选址纽约曼哈顿西区，兴建其总部大楼。IAC公司办公大楼是Frank Gehry在曼哈顿的第一个建筑，大楼的外墙为白色，设计师别出心裁，把每一层的外围都设计得与一般大厦不同。一般大厦外墙是平的，但这座大楼的外墙却呈延绵起伏状，故从街外看整座大楼呈波浪型。蛇行般线条让内部设计与外部设计实现完美统一。这座大楼彰显了许多盖里的个人风格，底部有几个扭曲的塔楼像蜂巢一样结合在一起，在此之上，是另一组直径相对较小的塔楼。整座大楼看上去就像是迎风的船帆。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_ICA);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBuildname14()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:弗兰克·盖里\n    美国因特网巨头IAC公司于2006年选址纽约曼哈顿西区，兴建其总部大楼。IAC公司办公大楼是Frank Gehry在曼哈顿的第一个建筑，大楼的外墙为白色，设计师别出心裁，把每一层的外围都设计得与一般大厦不同。一般大厦外墙是平的，但这座大楼的外墙却呈延绵起伏状，故从街外看整座大楼呈波浪型。蛇行般线条让内部设计与外部设计实现完美统一。这座大楼彰显了许多盖里的个人风格，底部有几个扭曲的塔楼像蜂巢一样结合在一起，在此之上，是另一组直径相对较小的塔楼。整座大楼看上去就像是迎风的船帆。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_ICA);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBtn5()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	//std::string designer =  "妹岛和世 西泽立卫";
-	//std::string ssss = "这座建筑像是不对称金属网格盒子的堆积体，造型新奇时尚，裹着白色的外衣。新当代艺术馆位于纽约曼哈顿下区，该区多由中产人士居住，看起来平凡无奇，但经这座新当代艺术馆点缀，顿然活泼起来。艺术馆由日本建筑师妹岛和世及西泽立卫设计。大厦外形活像随便叠上去的积木一样，呈不规则形状。艺术馆外墙有如蜂巢般的铝架，形容设计时髦新颖，而且闪闪生光。艺术馆于1977年成立，专门收藏当代艺术作品，并在地下室提供了媒体艺术特展室，专门展出数码艺术。该馆每年会有6个主要的当代艺术展（包括抽象艺术、装置艺术等主题），以及5个主要媒体艺术展。纽约新当代艺术博物馆在2007年12月1日开放，庆祝其成立30周年。建筑采用了6座矩形盒子结构叠加的形式，每一座盒子都有不同的楼层面积和天花板高度，这是为了营造不同高度和气氛的开放、灵活的展览空间。建筑外面用铝质网格包裹，从立面上几乎很难看到窗户。他们设计的这座建筑有着漂亮的展厅、剧院、教育区、商店、咖啡馆以及屋顶活动区等。";
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:妹岛和世 西泽立卫\n    这座建筑像是不对称金属网格盒子的堆积体，造型新奇时尚，裹着白色的外衣。新当代艺术馆位于纽约曼哈顿下区，该区多由中产人士居住，看起来平凡无奇，但经这座新当代艺术馆点缀，顿然活泼起来。艺术馆由日本建筑师妹岛和世及西泽立卫设计。大厦外形活像随便叠上去的积木一样，呈不规则形状。艺术馆外墙有如蜂巢般的铝架，形容设计时髦新颖，而且闪闪生光。艺术馆于1977年成立，专门收藏当代艺术作品，并在地下室提供了媒体艺术特展室，专门展出数码艺术。该馆每年会有6个主要的当代艺术展（包括抽象艺术、装置艺术等主题），以及5个主要媒体艺术展。纽约新当代艺术博物馆在2007年12月1日开放，庆祝其成立30周年。建筑采用了6座矩形盒子结构叠加的形式，每一座盒子都有不同的楼层面积和天花板高度，这是为了营造不同高度和气氛的开放、灵活的展览空间。建筑外面用铝质网格包裹，从立面上几乎很难看到窗户。他们设计的这座建筑有着漂亮的展厅、剧院、教育区、商店、咖啡馆以及屋顶活动区等。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_MOCA);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBuildname15()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:妹岛和世 西泽立卫\n    这座建筑像是不对称金属网格盒子的堆积体，造型新奇时尚，裹着白色的外衣。新当代艺术馆位于纽约曼哈顿下区，该区多由中产人士居住，看起来平凡无奇，但经这座新当代艺术馆点缀，顿然活泼起来。艺术馆由日本建筑师妹岛和世及西泽立卫设计。大厦外形活像随便叠上去的积木一样，呈不规则形状。艺术馆外墙有如蜂巢般的铝架，形容设计时髦新颖，而且闪闪生光。艺术馆于1977年成立，专门收藏当代艺术作品，并在地下室提供了媒体艺术特展室，专门展出数码艺术。该馆每年会有6个主要的当代艺术展（包括抽象艺术、装置艺术等主题），以及5个主要媒体艺术展。纽约新当代艺术博物馆在2007年12月1日开放，庆祝其成立30周年。建筑采用了6座矩形盒子结构叠加的形式，每一座盒子都有不同的楼层面积和天花板高度，这是为了营造不同高度和气氛的开放、灵活的展览空间。建筑外面用铝质网格包裹，从立面上几乎很难看到窗户。他们设计的这座建筑有着漂亮的展厅、剧院、教育区、商店、咖啡馆以及屋顶活动区等。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_MOCA);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBtn6()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	//std::string designer =  "雅克·赫尔佐格 德梅隆 艾未未 李兴刚 等";
-	//std::string ssss ="国家体育场（鸟巢）位于北京奥林匹克公园中心区南部，为2008年北京奥运会的主体育场。工程总占地面积21公顷，场内观众坐席约为91000个。举行了奥运会、残奥会开闭幕式、田径比赛及足球比赛决赛。奥运会后成为北京市民参与体育活动及享受体育娱乐的大型专业场所，并成为地标性的体育建筑和奥运遗产。体育场的形态如同孕育生命的“巢”和摇篮，寄托着人类对未来的希望。设计者们对这个场馆没有做任何多余的处理，把结构暴露在外，因而自然形成了建筑的外观。国家体育场坐落于奥林匹克公园建筑群的中央位置，地势略微隆起。“鸟巢”与“水立方”双连璧“鸟巢”与“水立方”双连璧它如同巨大的容器。高低起伏的波动的基座缓和了容器的体量，而且给了它戏剧化的弧形外观。汇聚成网格状--就如同一个由树枝编织成的鸟巢。在满足奥运会体育场所有的功能和技术要求的同时，设计上并没有被那些类同的过于强调建筑技术化的大跨度结构和数码屏幕所主宰。体育场的空间效果新颖激进，但又简洁古朴，从而为2008年奥运会创造了独一无二而又史无前例的地标性建筑。";
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:雅克·赫尔佐格 德梅隆 艾未未 李兴刚 等\n    国家体育场（鸟巢）位于北京奥林匹克公园中心区南部，为2008年北京奥运会的主体育场。工程总占地面积21公顷，场内观众坐席约为91000个。举行了奥运会、残奥会开闭幕式、田径比赛及足球比赛决赛。奥运会后成为北京市民参与体育活动及享受体育娱乐的大型专业场所，并成为地标性的体育建筑和奥运遗产。体育场的形态如同孕育生命的“巢”和摇篮，寄托着人类对未来的希望。设计者们对这个场馆没有做任何多余的处理，把结构暴露在外，因而自然形成了建筑的外观。国家体育场坐落于奥林匹克公园建筑群的中央位置，地势略微隆起。“鸟巢”与“水立方”双连璧“鸟巢”与“水立方”双连璧它如同巨大的容器。高低起伏的波动的基座缓和了容器的体量，而且给了它戏剧化的弧形外观。汇聚成网格状--就如同一个由树枝编织成的鸟巢。在满足奥运会体育场所有的功能和技术要求的同时，设计上并没有被那些类同的过于强调建筑技术化的大跨度结构和数码屏幕所主宰。体育场的空间效果新颖激进，但又简洁古朴，从而为2008年奥运会创造了独一无二而又史无前例的地标性建筑。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_CNS);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBuildname16()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:雅克·赫尔佐格 德梅隆 艾未未 李兴刚 等\n    国家体育场（鸟巢）位于北京奥林匹克公园中心区南部，为2008年北京奥运会的主体育场。工程总占地面积21公顷，场内观众坐席约为91000个。举行了奥运会、残奥会开闭幕式、田径比赛及足球比赛决赛。奥运会后成为北京市民参与体育活动及享受体育娱乐的大型专业场所，并成为地标性的体育建筑和奥运遗产。体育场的形态如同孕育生命的“巢”和摇篮，寄托着人类对未来的希望。设计者们对这个场馆没有做任何多余的处理，把结构暴露在外，因而自然形成了建筑的外观。国家体育场坐落于奥林匹克公园建筑群的中央位置，地势略微隆起。“鸟巢”与“水立方”双连璧“鸟巢”与“水立方”双连璧它如同巨大的容器。高低起伏的波动的基座缓和了容器的体量，而且给了它戏剧化的弧形外观。汇聚成网格状--就如同一个由树枝编织成的鸟巢。在满足奥运会体育场所有的功能和技术要求的同时，设计上并没有被那些类同的过于强调建筑技术化的大跨度结构和数码屏幕所主宰。体育场的空间效果新颖激进，但又简洁古朴，从而为2008年奥运会创造了独一无二而又史无前例的地标性建筑。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_CNS);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBtn7()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	//std::string designer = "雷姆·库哈斯";
-	//std::string xxx = "中央电视台新台址位于北京市朝阳区东三环中路(原“北汽摩厂址”)，紧临东三环，央视新大楼地处CBD核心区，占地 197000平方米。总建筑面积约55万平方米，最高建筑234米，工程建安总投资约50亿元人民币。建设内容主要包括：主楼(CCTV)、电视文化中心（TVCC）、服务楼及媒体公园。项目建成后，中央电视台将具备200个节目频道的播出能力。中央电视台新台址中将建五星级酒店，CCTV大楼主要由两部分功能组成，即五星级酒店和电视文化中心。酒店设置在CCTV大楼主体内。大楼的四五层内设酒店大堂及餐厅、商店、游泳池等公共活动场所。大堂上部南北两侧为300间客房合围成的中庭，主楼顶部为酒店的风味餐厅。中央电视台总部大楼主楼的两座塔楼双向内倾斜6度，在163米以上由“L”形悬臂结构连为一体，建筑外表面的玻璃幕墙由强烈的不规则几何图案组成，造型独特、结构新颖、高新技术含量大，在国内外均属“高、难、精、尖”的特大型项目。";
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:雷姆·库哈斯\n    中央电视台新台址位于北京市朝阳区东三环中路(原“北汽摩厂址”)，紧临东三环，央视新大楼地处CBD核心区，占地 197000平方米。总建筑面积约55万平方米，最高建筑234米，工程建安总投资约50亿元人民币。建设内容主要包括：主楼(CCTV)、电视文化中心（TVCC）、服务楼及媒体公园。项目建成后，中央电视台将具备200个节目频道的播出能力。中央电视台新台址中将建五星级酒店，CCTV大楼主要由两部分功能组成，即五星级酒店和电视文化中心。酒店设置在CCTV大楼主体内。大楼的四五层内设酒店大堂及餐厅、商店、游泳池等公共活动场所。大堂上部南北两侧为300间客房合围成的中庭，主楼顶部为酒店的风味餐厅。中央电视台总部大楼主楼的两座塔楼双向内倾斜6度，在163米以上由“L”形悬臂结构连为一体，建筑外表面的玻璃幕墙由强烈的不规则几何图案组成，造型独特、结构新颖、高新技术含量大，在国内外均属“高、难、精、尖”的特大型项目。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_CCTV);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBuildname17()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:雷姆·库哈斯\n    中央电视台新台址位于北京市朝阳区东三环中路(原“北汽摩厂址”)，紧临东三环，央视新大楼地处CBD核心区，占地 197000平方米。总建筑面积约55万平方米，最高建筑234米，工程建安总投资约50亿元人民币。建设内容主要包括：主楼(CCTV)、电视文化中心（TVCC）、服务楼及媒体公园。项目建成后，中央电视台将具备200个节目频道的播出能力。中央电视台新台址中将建五星级酒店，CCTV大楼主要由两部分功能组成，即五星级酒店和电视文化中心。酒店设置在CCTV大楼主体内。大楼的四五层内设酒店大堂及餐厅、商店、游泳池等公共活动场所。大堂上部南北两侧为300间客房合围成的中庭，主楼顶部为酒店的风味餐厅。中央电视台总部大楼主楼的两座塔楼双向内倾斜6度，在163米以上由“L”形悬臂结构连为一体，建筑外表面的玻璃幕墙由强烈的不规则几何图案组成，造型独特、结构新颖、高新技术含量大，在国内外均属“高、难、精、尖”的特大型项目。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_CCTV);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBtn8()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	//std::string designer  = "史蒂文·霍尔";
-	//std::string ssss = "北京当代万国城MOMA(准确的说，应该是当代万国城MOMA四期，即当代MOMA)就是其中之一。这座零售/办公建筑将由空中连廊连接其10座塔楼（其中4号楼是百老汇电影院，6号楼是凯悦酒店）。北京当代MOMA，是当代万国城MOMA四期(即北区白色联体楼）有共计10栋楼，通过空中连廊连接。建筑总占地约6万平方米，总建筑面积约22万平方米（其中住宅为13.5万平方米，配套商业面积达8.5万平方米，包括多厅艺术影院、画廊、图书馆等文化展览设施，还包括精品酒店，国际幼儿园，顶级餐饮，顶级俱乐部及健身房、游泳池、玩球馆等生活设施与休闲设施）。北京当代万国城MOMA，共有18栋住宅楼、1栋五星级酒店（含顶层公寓）、2个会所、1个电影院及其他配套设施。当代万国城MOMA由国内外多位著名设计大师主持规划设计工作，并由日本秋山宽负责园林景观设计，建筑吸收了当今国际先进的建筑艺术，体现民族风格，具有时代特色。";
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:史蒂文·霍尔\n    北京当代万国城MOMA(准确的说，应该是当代万国城MOMA四期，即当代MOMA)就是其中之一。这座零售/办公建筑将由空中连廊连接其10座塔楼（其中4号楼是百老汇电影院，6号楼是凯悦酒店）。北京当代MOMA，是当代万国城MOMA四期(即北区白色联体楼）有共计10栋楼，通过空中连廊连接。建筑总占地约6万平方米，总建筑面积约22万平方米（其中住宅为13.5万平方米，配套商业面积达8.5万平方米，包括多厅艺术影院、画廊、图书馆等文化展览设施，还包括精品酒店，国际幼儿园，顶级餐饮，顶级俱乐部及健身房、游泳池、玩球馆等生活设施与休闲设施）。北京当代万国城MOMA，共有18栋住宅楼、1栋五星级酒店（含顶层公寓）、2个会所、1个电影院及其他配套设施。当代万国城MOMA由国内外多位著名设计大师主持规划设计工作，并由日本秋山宽负责园林景观设计，建筑吸收了当今国际先进的建筑艺术，体现民族风格，具有时代特色。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_LH);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBuildname18()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:史蒂文·霍尔\n    北京当代万国城MOMA(准确的说，应该是当代万国城MOMA四期，即当代MOMA)就是其中之一。这座零售/办公建筑将由空中连廊连接其10座塔楼（其中4号楼是百老汇电影院，6号楼是凯悦酒店）。北京当代MOMA，是当代万国城MOMA四期(即北区白色联体楼）有共计10栋楼，通过空中连廊连接。建筑总占地约6万平方米，总建筑面积约22万平方米（其中住宅为13.5万平方米，配套商业面积达8.5万平方米，包括多厅艺术影院、画廊、图书馆等文化展览设施，还包括精品酒店，国际幼儿园，顶级餐饮，顶级俱乐部及健身房、游泳池、玩球馆等生活设施与休闲设施）。北京当代万国城MOMA，共有18栋住宅楼、1栋五星级酒店（含顶层公寓）、2个会所、1个电影院及其他配套设施。当代万国城MOMA由国内外多位著名设计大师主持规划设计工作，并由日本秋山宽负责园林景观设计，建筑吸收了当今国际先进的建筑艺术，体现民族风格，具有时代特色。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_LH);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBtn9()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	//std::string designer  = "理查德·罗杰斯";
-	//std::string xxxx = "伦敦希思罗机场五号候机厅，2008年3月27日建成。巨大的拱顶之下，没有一根柱子。第5航厦当前已兴建完成，且于2008年3月27日当地时间凌晨4时开放，落成后希斯罗机场接待的乘客数目提升至9,000万。为了应付旅客，航厦面积非常庞大，5层楼，每层足有50个足球场大，电梯多达105部。这个新增的候机厅建在一个无柱巨拱下，2008年建成后，它将成为欧洲最大的单顶棚建筑。五号候机厅不仅能容纳大量的乘客和机场商户，还大大缩短了从机场入口到登机口的距离。这是一个建筑业和设计业双重繁荣的年代，将古典主义现代化、让繁忙的公路从公园中穿行、像堆积木一样的“堆积”成一个大楼，各种各样的建筑层出不穷。";
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:理查德·罗杰斯\n    伦敦希思罗机场五号候机厅，2008年3月27日建成。巨大的拱顶之下，没有一根柱子。第5航厦当前已兴建完成，且于2008年3月27日当地时间凌晨4时开放，落成后希斯罗机场接待的乘客数目提升至9,000万。为了应付旅客，航厦面积非常庞大，5层楼，每层足有50个足球场大，电梯多达105部。这个新增的候机厅建在一个无柱巨拱下，2008年建成后，它将成为欧洲最大的单顶棚建筑。五号候机厅不仅能容纳大量的乘客和机场商户，还大大缩短了从机场入口到登机口的距离。这是一个建筑业和设计业双重繁荣的年代，将古典主义现代化、让繁忙的公路从公园中穿行、像堆积木一样的“堆积”成一个大楼，各种各样的建筑层出不穷。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_HT5);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBuildname19()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:理查德·罗杰斯\n    伦敦希思罗机场五号候机厅，2008年3月27日建成。巨大的拱顶之下，没有一根柱子。第5航厦当前已兴建完成，且于2008年3月27日当地时间凌晨4时开放，落成后希斯罗机场接待的乘客数目提升至9,000万。为了应付旅客，航厦面积非常庞大，5层楼，每层足有50个足球场大，电梯多达105部。这个新增的候机厅建在一个无柱巨拱下，2008年建成后，它将成为欧洲最大的单顶棚建筑。五号候机厅不仅能容纳大量的乘客和机场商户，还大大缩短了从机场入口到登机口的距离。这是一个建筑业和设计业双重繁荣的年代，将古典主义现代化、让繁忙的公路从公园中穿行、像堆积木一样的“堆积”成一个大楼，各种各样的建筑层出不穷。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_HT5);
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBtn10()
 {
-	currentDisplayId = &introductionDisplayId;
-	display();
-	CString cstr=_T("设计师:诺曼·福斯特\n");
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(cstr+_T("    马德里银行大楼位于西班牙首都马德里，又称马德里银行塔，是西班牙马德里储蓄银行（CajaMadira）的新总部。它于2008年建成，已经成为西班牙最高的建筑物。该建筑将成为西班牙最高建筑。它有45层楼，建成后石油天然气公司也将入驻。有趣的是，尽管是能源公司的总部大楼，能源储备丰厚，但是这座大楼却是用屋顶上的风力发电机解决自己的能源问题。它也被美国《时代》杂志评为2007年世界十大建筑之一。马德里银行塔，是现代文明与科技发展的产物，它的存在代表着进步。也许，在未来的某一天，它也会变成代表这座城市的一个标志性建筑。这座银行塔有一个独特的外观设计，它外部的建筑结构将位于中央的所有办公室的地板包围起来，而且这个外部的结构还要支撑整个塔的重量。这是一种合作式的设计形式，这使得大楼整体结合更为紧密，负重能力也达到最高。而为了让这座银行塔能够有更加灵活的办公空间，设计师借鉴了香港汇丰银行的建筑样式，采用了它的建筑技巧，即不间断地创造出1200平方米的楼板。如此一来，大楼的空间便被灵活地利用起来。石油和天然气公司的入驻，使得这部大楼也成为一个能源的总部。但尽管能源储备丰富，这座大楼的能源使用却是十分的环保与节约。在这所建筑的顶部设计有风力转化设备，可以为大楼提供相当大比例的电力供应，这个屋顶上的风力发电机完全有能力解决大楼的能源问题。"));
-	m_PictureBox.Play();
+	PostMessage(WM_INTRODUCE_CAJA);
 	
 }
 
 
 void CFutureBuildingDlg::OnStnClickedStaticBuildname20()
 {
-	//std::string xxxx = "马德里银行大楼位于西班牙首都马德里，又称马德里银行塔，是西班牙马德里储蓄银行（CajaMadira）的新总部。它于2008年建成，已经成为西班牙最高的建筑物。该建筑将成为西班牙最高建筑。它有45层楼，建成后石油天然气公司也将入驻。有趣的是，尽管是能源公司的总部大楼，能源储备丰厚，但是这座大楼却是用屋顶上的风力发电机解决自己的能源问题。它也被美国《时代》杂志评为2007年世界十大建筑之一。马德里银行塔，是现代文明与科技发展的产物，它的存在代表着进步。也许，在未来的某一天，它也会变成代表这座城市的一个标志性建筑。这座银行塔有一个独特的外观设计，它外部的建筑结构将位于中央的所有办公室的地板包围起来，而且这个外部的结构还要支撑整个塔的重量。这是一种合作式的设计形式，这使得大楼整体结合更为紧密，负重能力也达到最高。而为了让这座银行塔能够有更加灵活的办公空间，设计师借鉴了香港汇丰银行的建筑样式，采用了它的建筑技巧，即不间断地创造出1200平方米的楼板。如此一来，大楼的空间便被灵活地利用起来。石油和天然气公司的入驻，使得这部大楼也成为一个能源的总部。但尽管能源储备丰富，这座大楼的能源使用却是十分的环保与节约。在这所建筑的顶部设计有风力转化设备，可以为大楼提供相当大比例的电力供应，这个屋顶上的风力发电机完全有能力解决大楼的能源问题。";
-	currentDisplayId = &introductionDisplayId;
-	display();
-	CString cstr=_T("设计师:诺曼·福斯特\n");
-	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(cstr+_T("    马德里银行大楼位于西班牙首都马德里，又称马德里银行塔，是西班牙马德里储蓄银行（CajaMadira）的新总部。它于2008年建成，已经成为西班牙最高的建筑物。该建筑将成为西班牙最高建筑。它有45层楼，建成后石油天然气公司也将入驻。有趣的是，尽管是能源公司的总部大楼，能源储备丰厚，但是这座大楼却是用屋顶上的风力发电机解决自己的能源问题。它也被美国《时代》杂志评为2007年世界十大建筑之一。马德里银行塔，是现代文明与科技发展的产物，它的存在代表着进步。也许，在未来的某一天，它也会变成代表这座城市的一个标志性建筑。这座银行塔有一个独特的外观设计，它外部的建筑结构将位于中央的所有办公室的地板包围起来，而且这个外部的结构还要支撑整个塔的重量。这是一种合作式的设计形式，这使得大楼整体结合更为紧密，负重能力也达到最高。而为了让这座银行塔能够有更加灵活的办公空间，设计师借鉴了香港汇丰银行的建筑样式，采用了它的建筑技巧，即不间断地创造出1200平方米的楼板。如此一来，大楼的空间便被灵活地利用起来。石油和天然气公司的入驻，使得这部大楼也成为一个能源的总部。但尽管能源储备丰富，这座大楼的能源使用却是十分的环保与节约。在这所建筑的顶部设计有风力转化设备，可以为大楼提供相当大比例的电力供应，这个屋顶上的风力发电机完全有能力解决大楼的能源问题。"));
-	m_PictureBox.Play();
-	
+	PostMessage(WM_INTRODUCE_CAJA);	
 }
 
 
@@ -464,14 +381,6 @@ void CFutureBuildingDlg::display()
 
 }
 
-void CFutureBuildingDlg::OnBnClickedButton1()
-{
-	//MessageBox(_T("OK"));
-	m_PictureBox.Stop();
-	currentDisplayId = &chooseDisplayId;
-	display();
-}
-
 
 BOOL CFutureBuildingDlg::OnEraseBkgnd(CDC* pDC)
 {
@@ -490,4 +399,214 @@ BOOL CFutureBuildingDlg::OnEraseBkgnd(CDC* pDC)
 
 void CFutureBuildingDlg::SetButtonBackGrounds(CDC *pDC){
 	m_btnBack.SetBkGnd(pDC);
+}
+
+afx_msg LRESULT CFutureBuildingDlg::OnIntroduceBloch(WPARAM wParam, LPARAM lParam)
+{
+	currentDisplayId = &introductionDisplayId;
+	display();
+	//std::string designer = "史蒂文·霍尔";
+	//std::string ssss = "布洛克新翼大楼耗资9,500万美元（约7.4亿港元）兴建，2007年6月9日揭幕，收藏当代和非洲艺术品、摄影作品以及特别馆藏。新翼还包括了一座咖啡厅和参考图书馆。纳阿氏艺术馆建筑风格为新式古典派。这次获选为《时代》周刊2007年度十大最佳建筑首位的，是馆内新建的布洛克大楼。馆方于1993年开始构思扩建，目标是要增加艺术馆面积55%。扩建计划于1999年落实，建筑师霍尔把新翼设计成楼底高度不一，并且令大楼发光，《时代》周刊形容布洛克新翼是古典派建筑的宏伟新猷。美国密苏里州堪萨斯城纳尔逊艺术馆扩建配楼。大楼由几个不规则的白色立方体组成。每到夜间，灯光从外墙上半透明和透明的玻璃中透出，好似建筑由内至外发出柔和的白色光芒，使这座新古典主义艺术博物馆更具现代气息。被美国《时代》杂志评为2007年世界十大建筑之首。";
+	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:史蒂文·霍尔\n    布洛克新翼大楼耗资9,500万美元（约7.4亿港元）兴建，2007年6月9日揭幕，收藏当代和非洲艺术品、摄影作品以及特别馆藏。新翼还包括了一座咖啡厅和参考图书馆。纳阿氏艺术馆建筑风格为新式古典派。这次获选为《时代》周刊2007年度十大最佳建筑首位的，是馆内新建的布洛克大楼。馆方于1993年开始构思扩建，目标是要增加艺术馆面积55%。扩建计划于1999年落实，建筑师霍尔把新翼设计成楼底高度不一，并且令大楼发光，《时代》周刊形容布洛克新翼是古典派建筑的宏伟新猷。美国密苏里州堪萨斯城纳尔逊艺术馆扩建配楼。大楼由几个不规则的白色立方体组成。每到夜间，灯光从外墙上半透明和透明的玻璃中透出，好似建筑由内至外发出柔和的白色光芒，使这座新古典主义艺术博物馆更具现代气息。被美国《时代》杂志评为2007年世界十大建筑之首。"));
+	m_PictureBox.RemoveAllImage();
+	m_PictureBox.AddImage(_TEXT("images/bloch/bloch1.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/bloch/bloch2.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/bloch/bloch3.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/bloch/bloch4.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/bloch/bloch5.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/bloch/bloch6.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/bloch/bloch7.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/bloch/bloch8.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/bloch/bloch9.jpg"));
+	m_PictureBox.Play();
+	return 0;
+}
+
+
+afx_msg LRESULT CFutureBuildingDlg::OnIntroduceCctv(WPARAM wParam, LPARAM lParam)
+{
+	currentDisplayId = &introductionDisplayId;
+	display();
+	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:雷姆·库哈斯\n    中央电视台新台址位于北京市朝阳区东三环中路(原“北汽摩厂址”)，紧临东三环，央视新大楼地处CBD核心区，占地 197000平方米。总建筑面积约55万平方米，最高建筑234米，工程建安总投资约50亿元人民币。建设内容主要包括：主楼(CCTV)、电视文化中心（TVCC）、服务楼及媒体公园。项目建成后，中央电视台将具备200个节目频道的播出能力。中央电视台新台址中将建五星级酒店，CCTV大楼主要由两部分功能组成，即五星级酒店和电视文化中心。酒店设置在CCTV大楼主体内。大楼的四五层内设酒店大堂及餐厅、商店、游泳池等公共活动场所。大堂上部南北两侧为300间客房合围成的中庭，主楼顶部为酒店的风味餐厅。中央电视台总部大楼主楼的两座塔楼双向内倾斜6度，在163米以上由“L”形悬臂结构连为一体，建筑外表面的玻璃幕墙由强烈的不规则几何图案组成，造型独特、结构新颖、高新技术含量大，在国内外均属“高、难、精、尖”的特大型项目。"));
+	m_PictureBox.RemoveAllImage();
+	m_PictureBox.AddImage(_TEXT("images/cctv/cctv1.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cctv/cctv2.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cctv/cctv3.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cctv/cctv4.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cctv/cctv5.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cctv/cctv6.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cctv/cctv7.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cctv/cctv8.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cctv/cctv9.jpg"));
+	m_PictureBox.Play();
+	return 0;
+}
+
+
+afx_msg LRESULT CFutureBuildingDlg::OnIntroduceCaja(WPARAM wParam, LPARAM lParam)
+{
+	currentDisplayId = &introductionDisplayId;
+	display();
+	CString cstr=_T("设计师:诺曼·福斯特\n");
+	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(cstr+_T("    马德里银行大楼位于西班牙首都马德里，又称马德里银行塔，是西班牙马德里储蓄银行（CajaMadira）的新总部。它于2008年建成，已经成为西班牙最高的建筑物。该建筑将成为西班牙最高建筑。它有45层楼，建成后石油天然气公司也将入驻。有趣的是，尽管是能源公司的总部大楼，能源储备丰厚，但是这座大楼却是用屋顶上的风力发电机解决自己的能源问题。它也被美国《时代》杂志评为2007年世界十大建筑之一。马德里银行塔，是现代文明与科技发展的产物，它的存在代表着进步。也许，在未来的某一天，它也会变成代表这座城市的一个标志性建筑。这座银行塔有一个独特的外观设计，它外部的建筑结构将位于中央的所有办公室的地板包围起来，而且这个外部的结构还要支撑整个塔的重量。这是一种合作式的设计形式，这使得大楼整体结合更为紧密，负重能力也达到最高。而为了让这座银行塔能够有更加灵活的办公空间，设计师借鉴了香港汇丰银行的建筑样式，采用了它的建筑技巧，即不间断地创造出1200平方米的楼板。如此一来，大楼的空间便被灵活地利用起来。石油和天然气公司的入驻，使得这部大楼也成为一个能源的总部。但尽管能源储备丰富，这座大楼的能源使用却是十分的环保与节约。在这所建筑的顶部设计有风力转化设备，可以为大楼提供相当大比例的电力供应，这个屋顶上的风力发电机完全有能力解决大楼的能源问题。"));
+	m_PictureBox.RemoveAllImage();
+	m_PictureBox.AddImage(_TEXT("images/caja/caja1.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/caja/caja2.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/caja/caja3.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/caja/caja4.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/caja/caja5.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/caja/caja6.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/caja/caja7.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/caja/caja8.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/caja/caja9.jpg"));
+	m_PictureBox.Play();
+	return 0;
+}
+
+
+afx_msg LRESULT CFutureBuildingDlg::OnIntroduceCns(WPARAM wParam, LPARAM lParam)
+{
+	currentDisplayId = &introductionDisplayId;
+	display();
+	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:雅克·赫尔佐格 德梅隆 艾未未 李兴刚 等\n    国家体育场（鸟巢）位于北京奥林匹克公园中心区南部，为2008年北京奥运会的主体育场。工程总占地面积21公顷，场内观众坐席约为91000个。举行了奥运会、残奥会开闭幕式、田径比赛及足球比赛决赛。奥运会后成为北京市民参与体育活动及享受体育娱乐的大型专业场所，并成为地标性的体育建筑和奥运遗产。体育场的形态如同孕育生命的“巢”和摇篮，寄托着人类对未来的希望。设计者们对这个场馆没有做任何多余的处理，把结构暴露在外，因而自然形成了建筑的外观。国家体育场坐落于奥林匹克公园建筑群的中央位置，地势略微隆起。“鸟巢”与“水立方”双连璧“鸟巢”与“水立方”双连璧它如同巨大的容器。高低起伏的波动的基座缓和了容器的体量，而且给了它戏剧化的弧形外观。汇聚成网格状--就如同一个由树枝编织成的鸟巢。在满足奥运会体育场所有的功能和技术要求的同时，设计上并没有被那些类同的过于强调建筑技术化的大跨度结构和数码屏幕所主宰。体育场的空间效果新颖激进，但又简洁古朴，从而为2008年奥运会创造了独一无二而又史无前例的地标性建筑。"));
+	m_PictureBox.RemoveAllImage();
+	m_PictureBox.AddImage(_TEXT("images/cns/cns1.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cns/cns2.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cns/cns3.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cns/cns4.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cns/cns5.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cns/cns6.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cns/cns7.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cns/cns8.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/cns/cns9.jpg"));
+	m_PictureBox.Play();
+	return 0;
+}
+
+
+afx_msg LRESULT CFutureBuildingDlg::OnIntroduceHt5(WPARAM wParam, LPARAM lParam)
+{
+	currentDisplayId = &introductionDisplayId;
+	display();
+	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:理查德·罗杰斯\n    伦敦希思罗机场五号候机厅，2008年3月27日建成。巨大的拱顶之下，没有一根柱子。第5航厦当前已兴建完成，且于2008年3月27日当地时间凌晨4时开放，落成后希斯罗机场接待的乘客数目提升至9,000万。为了应付旅客，航厦面积非常庞大，5层楼，每层足有50个足球场大，电梯多达105部。这个新增的候机厅建在一个无柱巨拱下，2008年建成后，它将成为欧洲最大的单顶棚建筑。五号候机厅不仅能容纳大量的乘客和机场商户，还大大缩短了从机场入口到登机口的距离。这是一个建筑业和设计业双重繁荣的年代，将古典主义现代化、让繁忙的公路从公园中穿行、像堆积木一样的“堆积”成一个大楼，各种各样的建筑层出不穷。"));
+	m_PictureBox.RemoveAllImage();
+	m_PictureBox.AddImage(_TEXT("images/ht5/ht51.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ht5/ht52.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ht5/ht53.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ht5/ht54.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ht5/ht55.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ht5/ht56.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ht5/ht57.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ht5/ht58.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ht5/ht59.jpg"));
+	m_PictureBox.Play();
+	return 0;
+}
+
+
+afx_msg LRESULT CFutureBuildingDlg::OnIntroduceIca(WPARAM wParam, LPARAM lParam)
+{
+	currentDisplayId = &introductionDisplayId;
+	display();
+	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:弗兰克·盖里\n    美国因特网巨头IAC公司于2006年选址纽约曼哈顿西区，兴建其总部大楼。IAC公司办公大楼是Frank Gehry在曼哈顿的第一个建筑，大楼的外墙为白色，设计师别出心裁，把每一层的外围都设计得与一般大厦不同。一般大厦外墙是平的，但这座大楼的外墙却呈延绵起伏状，故从街外看整座大楼呈波浪型。蛇行般线条让内部设计与外部设计实现完美统一。这座大楼彰显了许多盖里的个人风格，底部有几个扭曲的塔楼像蜂巢一样结合在一起，在此之上，是另一组直径相对较小的塔楼。整座大楼看上去就像是迎风的船帆。"));
+	m_PictureBox.AddImage(_TEXT("images/ica/ica1.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ica/ica2.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ica/ica3.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ica/ica4.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ica/ica5.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ica/ica6.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ica/ica7.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ica/ica8.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/ica/ica9.jpg"));
+	m_PictureBox.Play();
+	return 0;
+}
+
+
+afx_msg LRESULT CFutureBuildingDlg::OnIntroduceLh(WPARAM wParam, LPARAM lParam)
+{
+	currentDisplayId = &introductionDisplayId;
+	display();
+	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:史蒂文·霍尔\n    北京当代万国城MOMA(准确的说，应该是当代万国城MOMA四期，即当代MOMA)就是其中之一。这座零售/办公建筑将由空中连廊连接其10座塔楼（其中4号楼是百老汇电影院，6号楼是凯悦酒店）。北京当代MOMA，是当代万国城MOMA四期(即北区白色联体楼）有共计10栋楼，通过空中连廊连接。建筑总占地约6万平方米，总建筑面积约22万平方米（其中住宅为13.5万平方米，配套商业面积达8.5万平方米，包括多厅艺术影院、画廊、图书馆等文化展览设施，还包括精品酒店，国际幼儿园，顶级餐饮，顶级俱乐部及健身房、游泳池、玩球馆等生活设施与休闲设施）。北京当代万国城MOMA，共有18栋住宅楼、1栋五星级酒店（含顶层公寓）、2个会所、1个电影院及其他配套设施。当代万国城MOMA由国内外多位著名设计大师主持规划设计工作，并由日本秋山宽负责园林景观设计，建筑吸收了当今国际先进的建筑艺术，体现民族风格，具有时代特色。"));
+	m_PictureBox.RemoveAllImage();
+	m_PictureBox.AddImage(_TEXT("images/lh/lh1.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/lh/lh2.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/lh/lh3.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/lh/lh4.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/lh/lh5.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/lh/lh6.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/lh/lh7.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/lh/lh8.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/lh/lh9.jpg"));
+	m_PictureBox.Play();
+	return 0;
+}
+
+
+afx_msg LRESULT CFutureBuildingDlg::OnIntroduceMoca(WPARAM wParam, LPARAM lParam)
+{
+	currentDisplayId = &introductionDisplayId;
+	display();
+	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:妹岛和世 西泽立卫\n    这座建筑像是不对称金属网格盒子的堆积体，造型新奇时尚，裹着白色的外衣。新当代艺术馆位于纽约曼哈顿下区，该区多由中产人士居住，看起来平凡无奇，但经这座新当代艺术馆点缀，顿然活泼起来。艺术馆由日本建筑师妹岛和世及西泽立卫设计。大厦外形活像随便叠上去的积木一样，呈不规则形状。艺术馆外墙有如蜂巢般的铝架，形容设计时髦新颖，而且闪闪生光。艺术馆于1977年成立，专门收藏当代艺术作品，并在地下室提供了媒体艺术特展室，专门展出数码艺术。该馆每年会有6个主要的当代艺术展（包括抽象艺术、装置艺术等主题），以及5个主要媒体艺术展。纽约新当代艺术博物馆在2007年12月1日开放，庆祝其成立30周年。建筑采用了6座矩形盒子结构叠加的形式，每一座盒子都有不同的楼层面积和天花板高度，这是为了营造不同高度和气氛的开放、灵活的展览空间。建筑外面用铝质网格包裹，从立面上几乎很难看到窗户。他们设计的这座建筑有着漂亮的展厅、剧院、教育区、商店、咖啡馆以及屋顶活动区等。"));
+	m_PictureBox.RemoveAllImage();
+	m_PictureBox.AddImage(_TEXT("images/moca/moca1.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/moca/moca2.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/moca/moca3.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/moca/moca4.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/moca/moca5.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/moca/moca6.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/moca/moca7.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/moca/moca8.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/moca/moca9.jpg"));
+	m_PictureBox.Play();
+	return 0;
+}
+
+
+afx_msg LRESULT CFutureBuildingDlg::OnIntroduceNfb(WPARAM wParam, LPARAM lParam)
+{
+	currentDisplayId = &introductionDisplayId;
+	display();
+	//std::string designer = "莫菲西斯 汤姆·梅恩";
+	//std::string ssss = "旧金山新联邦大楼位于美国加利福利亚州旧金山市区，该建筑有18层办公楼，高71米。大堂楼层开始往上设有「百叶帘」般的外墙设计，配以网眼钢板，《时代》周刊形容大楼设计技术精湛。这座大楼不仅在外形上给人极强的视觉冲击，还是座完完全全的环保建筑，其耗能是同类型大楼耗能的一半。大楼朝南一面装有穿孔金属板，它们既是整栋大楼外观设计的一部分，也是实用的遮阳屏，能够在挡住直射阳光的同时，为大楼内的办公室提供温和的采光，即使离窗户最远的座位也能享受到自然光。";
+	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:莫菲西斯 汤姆·梅恩\n    旧金山新联邦大楼位于美国加利福利亚州旧金山市区，该建筑有18层办公楼，高71米。大堂楼层开始往上设有「百叶帘」般的外墙设计，配以网眼钢板，《时代》周刊形容大楼设计技术精湛。这座大楼不仅在外形上给人极强的视觉冲击，还是座完完全全的环保建筑，其耗能是同类型大楼耗能的一半。大楼朝南一面装有穿孔金属板，它们既是整栋大楼外观设计的一部分，也是实用的遮阳屏，能够在挡住直射阳光的同时，为大楼内的办公室提供温和的采光，即使离窗户最远的座位也能享受到自然光。"));
+	m_PictureBox.AddImage(_TEXT("images/nfb/nfb1.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/nfb/nfb2.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/nfb/nfb3.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/nfb/nfb4.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/nfb/nfb5.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/nfb/nfb6.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/nfb/nfb7.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/nfb/nfb8.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/nfb/nfb9.jpg"));
+	m_PictureBox.Play();
+	return 0;
+}
+
+afx_msg LRESULT CFutureBuildingDlg::OnIntroduceOsp(WPARAM wParam, LPARAM lParam)
+{
+	currentDisplayId = &introductionDisplayId;
+	display();
+	//std::string designer = "Weiss/Manfredi";
+	//std::string ssss = "西雅图艺术博物馆将其雕塑公园建于一个旧工业区内，一条繁忙的公路和铁路穿越其间。奥运雕塑公园位于滨海公路和铁路线中间的空地，据悉1970年代以前，公园所在地为石油公司优尼科（加州联合石油）占有。优尼科迁出后，该地皮因地下藏有有毒物质，长年丢空。后来西雅图艺术馆建议把该空置用地改建成公园，以解决西雅图闹市区中缺乏休憩用地的问题。该公园摆放的部分大型雕塑设有行人径，参观者可于雕塑上行走。此外，公园亦会不时展出非常设雕塑，《时代》周刊形容公园将自然和艺术与城市糅合起来，成为西雅图的「动能地带」。这是一个建筑业和设计业双重繁荣的年代，将古典主义现代化、让繁忙的公路从公园中穿行、像堆积木一样的“堆积”成一个大楼，各种各样的建筑层出不穷。";
+	GetDlgItem(IDC_STATIC_INTRODUCTION)->SetWindowText(_T("设计师:Weiss/Manfredi\n    西雅图艺术博物馆将其雕塑公园建于一个旧工业区内，一条繁忙的公路和铁路穿越其间。奥运雕塑公园位于滨海公路和铁路线中间的空地，据悉1970年代以前，公园所在地为石油公司优尼科（加州联合石油）占有。优尼科迁出后，该地皮因地下藏有有毒物质，长年丢空。后来西雅图艺术馆建议把该空置用地改建成公园，以解决西雅图闹市区中缺乏休憩用地的问题。该公园摆放的部分大型雕塑设有行人径，参观者可于雕塑上行走。此外，公园亦会不时展出非常设雕塑，《时代》周刊形容公园将自然和艺术与城市糅合起来，成为西雅图的「动能地带」。这是一个建筑业和设计业双重繁荣的年代，将古典主义现代化、让繁忙的公路从公园中穿行、像堆积木一样的“堆积”成一个大楼，各种各样的建筑层出不穷。"));
+	m_PictureBox.AddImage(_TEXT("images/osp/osp1.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/osp/osp2.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/osp/osp3.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/osp/osp4.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/osp/osp5.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/osp/osp6.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/osp/osp7.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/osp/osp8.jpg"));
+	m_PictureBox.AddImage(_TEXT("images/osp/osp9.jpg"));
+	m_PictureBox.Play();
+	return 0;
+}
+
+
+void CFutureBuildingDlg::OnBnClickedButtonBack()
+{
+	m_PictureBox.Stop();
+	currentDisplayId = &chooseDisplayId;
+	display();
 }

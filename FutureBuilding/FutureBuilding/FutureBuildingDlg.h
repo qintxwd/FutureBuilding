@@ -9,6 +9,17 @@
 #include "MyButton.h"
 using namespace std;
 
+//自定义消息 
+#define WM_INTRODUCE_BLOCH (WM_USER+101)
+#define WM_INTRODUCE_CAJA (WM_USER+102)
+#define WM_INTRODUCE_CCTV (WM_USER+103)
+#define WM_INTRODUCE_CNS (WM_USER+104)
+#define WM_INTRODUCE_HT5 (WM_USER+105)
+#define WM_INTRODUCE_ICA (WM_USER+106)
+#define WM_INTRODUCE_LH (WM_USER+107)
+#define WM_INTRODUCE_MOCA (WM_USER+108)
+#define WM_INTRODUCE_NFB (WM_USER+109)
+#define WM_INTRODUCE_OSP (WM_USER+110)
 // CFutureBuildingDlg 对话框
 class CFutureBuildingDlg : public CDialogEx
 {
@@ -67,7 +78,19 @@ private:
 public:
 	afx_msg void OnClose();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
-	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedButtonBack();
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	CMyButton m_btnBack;
+protected:
+	afx_msg LRESULT OnIntroduceBloch(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnIntroduceCctv(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnIntroduceCaja(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnIntroduceCns(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnIntroduceHt5(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnIntroduceIca(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnIntroduceLh(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnIntroduceMoca(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnIntroduceNfb(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnIntroduceOsp(WPARAM wParam, LPARAM lParam);
+
 };

@@ -42,7 +42,8 @@ public:
 		kAnimationCoverLeft,
 		kAnimationCoverRight,
 		kAnimationCoverTop,
-		kAnimationCoverBottom
+		kAnimationCoverBottom,
+		kAnimationRandom
 	};
 
 	CImageBox();
